@@ -18,14 +18,16 @@ body {
 
 .row:nth-child(2) .col {
   padding: 0 15px;
-  text-align: center;
+  text-align: left;
 }
 
 .row:nth-child(2) .col:first-child {
   flex: 1;
   display: flex;
   flex-direction: column;
-  text-align: center;
+  text-align: left;
+  padding-left: 50px;
+  padding-right: 5px;
 }
 
 .row:nth-child(2) .col:last-child {
@@ -50,6 +52,8 @@ body {
 .btn:hover {
   font-weight: bold;
   transform: scale(1.02);
+  color: red;
+  outline: 2px solid red;
 }
 
 .add-fav {

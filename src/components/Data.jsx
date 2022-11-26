@@ -6,7 +6,7 @@ const Data = [
     engine: 'I5',
     time: '8.72',
     speed: '168.3',
-    image: "/development/images/1.png"
+    image: "/images/1.png"
   },
   {
     id: 2,
@@ -15,7 +15,7 @@ const Data = [
     engine: 'V6',
     time: '10.45',
     speed: '132.9',
-    image: "/development/images/2.png"
+    image: "/images/2.png"
   },
   {
     id: 3,
@@ -24,7 +24,7 @@ const Data = [
     engine: 'V10',
     time: '10.16',
     speed: '139.7',
-    image: "/development/images/3.png"
+    image: "/images/3.png"
   },
   {
     id: 4,
@@ -33,7 +33,7 @@ const Data = [
     engine: 'V8',
     time: '9.76',
     speed: '144.8',
-    image: "/development/images/4.png"
+    image: "/images/4.png"
   },
   {
     id: 5,
@@ -42,7 +42,7 @@ const Data = [
     engine: 'V8',
     time: '10.57',
     speed: '129.3',
-    image: "/development/images/5.png"
+    image: "/images/5.png"
   },
   {
     id: 6,
@@ -51,7 +51,7 @@ const Data = [
     engine: 'V10',
     time: '7.76',
     speed: '196.9',
-    image: "/development/images/6.png"
+    image: "/images/6.png"
   },
   {
     id: 7,
@@ -60,7 +60,7 @@ const Data = [
     engine: 'I6',
     time: '10.61',
     speed: '134.2',
-    image: "/development/images/7.png"
+    image: "/images/7.png"
   },
   {
     id: 8,
@@ -69,7 +69,7 @@ const Data = [
     engine: 'I6',
     time: '10.41',
     speed: '138.6',
-    image: "/development/images/8.png"
+    image: "/images/8.png"
   },
   {
     id: 9,
@@ -78,7 +78,7 @@ const Data = [
     engine: 'I6',
     time: '10.29',
     speed: '140.2',
-    image: "/development/images/9.png"
+    image: "/images/9.png"
   },
   {
     id: 10,
@@ -87,7 +87,7 @@ const Data = [
     engine: 'I6',
     time: '10.42',
     speed: '138.6',
-    image: "/development/images/10.png"
+    image: "/images/10.png"
   },
   {
     id: 11,
@@ -96,7 +96,7 @@ const Data = [
     engine: 'I6',
     time: '10.54',
     speed: '132.1',
-    image: "/development/images/11.png"
+    image: "/images/11.png"
   },
   {
     id: 12,
@@ -105,7 +105,7 @@ const Data = [
     engine: 'V8',
     time: '9.65',
     speed: '144.2',
-    image: "/development/images/12.png"
+    image: "/images/12.png"
   }
 ]
 

@@ -83,7 +83,7 @@ const Filter = () => {
       }
     });
     setData(result);
-  }
+  };
 
   const filterEngine = (filterItem) => {
     if (filterItem === "I5") {
@@ -147,7 +147,7 @@ const Filter = () => {
       }
     });
     setData(result);
-  }
+  };
 
   const addFavorite = (id) => {
     if (!favorite.includes(id)) {
@@ -165,30 +165,36 @@ const Filter = () => {
     if (boolFav === false) {
       boolFav = true;
       let filterFavs = Data.filter(curItem => favorite.includes(curItem.id));
-      let sumSpeed = 0;
-      let sumTime = 0;
-      let count = 0;
-      for (let i = 0; filterFavs[i]; i++) {
-          sumSpeed += parseFloat(filterFavs[i].speed);
-          sumTime += parseFloat(filterFavs[i].time)
-          count += 1;
-      }
-      averageSpeed = (sumSpeed / count).toFixed(1);;
-      averageTime = (sumTime / count).toFixed(2);
-      if (isNaN(averageSpeed)) {
-        averageSpeed = 0;
-      }
-      if (isNaN(averageTime)) {
-        averageTime = 0;
-      }
       setData(filterFavs);
+      aggregateFavs();
     } else {
       boolFav = false;
       resetAll();
     }
-  }
+  };
+
+  const aggregateFavs = (filterItem) => {
+    let favs = Data.filter(curItem => favorite.includes(curItem.id));
+    let sumSpeed = 0;
+    let sumTime = 0;
+    let count = 0;
+    for (let i = 0; favs[i]; i++) {
+        sumSpeed += parseFloat(favs[i].speed);
+        sumTime += parseFloat(favs[i].time)
+        count += 1;
+    }
+    averageSpeed = (sumSpeed / count).toFixed(1);;
+    averageTime = (sumTime / count).toFixed(2);
+    if (isNaN(averageSpeed)) {
+      averageSpeed = 0;
+    }
+    if (isNaN(averageTime)) {
+      averageTime = 0;
+    }
+  };
 
   const sortFastestTime = (filterItem) => {
+    resetAll();
     let sortData = Data.sort((a, b) => parseFloat(a.time) > parseFloat(b.time) ? 1 : -1);
     setData(Array.from(sortData));
     boolSortFastestTime = true;
@@ -198,6 +204,7 @@ const Filter = () => {
   };
 
   const sortSlowestTime = (filterItem) => {
+    resetAll();
     let sortData = Data.sort((a, b) => parseFloat(a.time) < parseFloat(b.time) ? 1 : -1);
     setData(Array.from(sortData));
     boolSortFastestTime = false;
@@ -207,6 +214,7 @@ const Filter = () => {
   };
 
   const sortFastestTrap = (filterItem) => {
+    resetAll();
     let sortData = Data.sort((a, b) => parseFloat(a.speed) < parseFloat(b.speed) ? 1 : -1);
     setData(Array.from(sortData));
     boolSortFastestTime = false;
@@ -216,6 +224,7 @@ const Filter = () => {
   };
 
   const sortSlowestTrap = (filterItem) => {
+    resetAll();
     let sortData = Data.sort((a, b) => parseFloat(a.speed) > parseFloat(b.speed) ? 1 : -1);
     setData(Array.from(sortData));
     boolSortFastestTime = false;
@@ -235,6 +244,7 @@ const Filter = () => {
     boolV8 = false;
     boolV10 = false;
     setData(Data);
+    aggregateFavs();
   };
 
   return (
@@ -243,92 +253,96 @@ const Filter = () => {
         <div className="col">
           <br></br>
           <br></br>
-          <h1 className="title">Drag racing 1/4 mile submissions</h1>
+          <h1 style={{ color: "#FFFFFF", }} className="title">Drag Racing Day Results</h1>
+          <br></br>
+          <h2 className="title">1/4 mile times of modified forced induction / naturally aspirated cars with varying engine configurations</h2>
         </div>
       </div>
       <div className="row">
-        <div className="col">
-          <p>Sort</p>
+        <div style={{ display: "inline", }} className="col">
+          <p>Sort by</p>
           <br></br>
           { boolSortFastestTime ? (
-            <button style={{ color: "red", outline: "2px solid red", }} className="btn" onClick={() => sortFastestTime(Data)}>Fastest time</button>
+            <button style={{ color: "red", outline: "2px solid red", display: "inline", margin: "0 auto", width: "45%", marginRight: "15px", marginBottom: "15px", }} className="btn" onClick={() => sortFastestTime(Data)}>Fastest time</button>
           ) : (
-            <button className="btn" onClick={() => sortFastestTime(Data)}>Fastest time</button>
+            <button style={{ display: "inline", margin: "0 auto", width: "45%", marginRight: "15px", marginBottom: "15px", }} className="btn" onClick={() => sortFastestTime(Data)}>Fastest time</button>
           )}
           { boolSortSlowestTime ? (
-            <button style={{ color: "red", outline: "2px solid red", }} className="btn" onClick={() => sortSlowestTime(Data)}>Slowest time</button>
+            <button style={{ color: "red", outline: "2px solid red", display: "inline", margin: "0 auto", width: "45%", marginLeft: "0px", }} className="btn" onClick={() => sortSlowestTime(Data)}>Slowest time</button>
           ) : (
-            <button className="btn" onClick={() => sortSlowestTime(Data)}>Slowest time</button>
+            <button style={{ display: "inline", margin: "0 auto", width: "45%", marginLeft: "0px", }} className="btn" onClick={() => sortSlowestTime(Data)}>Slowest time</button>
           )}
           { boolSortFastestTrap ? (
-            <button style={{ color: "red", outline: "2px solid red", }} className="btn" onClick={() => sortFastestTrap(Data)}>Fastest trap speed</button>
+            <button style={{ color: "red", outline: "2px solid red", display: "inline", margin: "0 auto", width: "45%", marginRight: "15px", }} className="btn" onClick={() => sortFastestTrap(Data)}>Fastest trap speed</button>
           ) : (
-            <button className="btn" onClick={() => sortFastestTrap(Data)}>Fastest trap speed</button>
+            <button style={{ display: "inline", margin: "0 auto", width: "45%", marginRight: "15px", }} className="btn" onClick={() => sortFastestTrap(Data)}>Fastest trap speed</button>
           )}
           { boolSortSlowestTrap ? (
-            <button style={{ color: "red", outline: "2px solid red", }} className="btn" onClick={() => sortSlowestTrap(Data)}>Slowest trap speed</button>
+            <button style={{ color: "red", outline: "2px solid red", display: "inline", margin: "0 auto", width: "45%", marginLeft: "0px", }} className="btn" onClick={() => sortSlowestTrap(Data)}>Slowest trap speed</button>
           ) : (
-            <button className="btn" onClick={() => sortSlowestTrap(Data)}>Slowest trap speed</button>
+            <button style={{ display: "inline", margin: "0 auto", width: "45%", marginLeft: "0px", }} className="btn" onClick={() => sortSlowestTrap(Data)}>Slowest trap speed</button>
           )}
           <br></br>
-          <p>Filters</p>
           <br></br>
-          <button className="btn" onClick={() => resetAll(Data)}>Reset / show all</button>
+          <hr style={{ width: "94%", }} />
+          <br></br>
+          <button style={{ display: "inline", margin: "0 auto", width: "94%", marginRight: "14px", marginBottom: "15px", }} className="btn" onClick={() => resetAll(Data)}>Reset / show all</button>
           <br></br>
           { boolFav ? (
-            <button style={{ color: "red", outline: "2px solid red", }} className="btn" onClick={() => filterFavorites(Data)}>Favorites</button>
+            <button style={{ color: "red", outline: "2px solid red", width: "94%", }} className="btn" onClick={() => filterFavorites(Data)}>Favorites</button>
           ) : (
-            <button className="btn" onClick={() => filterFavorites(Data)}>Favorites</button>
+            <button style={{ display: "inline", margin: "0 auto", width: "94%", padding: "5px", marginBottom: "20px", }} className="btn" onClick={() => filterFavorites(Data)}>Favorites</button>
           )}
-          <p>Favorites average trap speed {averageSpeed}mph</p>
+          <p style={{ fontWeight: "normal", }}>Favorites average trap speed {averageSpeed}mph</p>
           <br></br>
-          <p>Favorites average 1/4 time {averageTime}s</p>
+          <p style={{ fontWeight: "normal", }}>Favorites average 1/4 time {averageTime}s</p>
           <br></br>
+          <hr style={{ width: "94%", }} />
           <br></br>
-          <p>Induction type</p>
+          <p>Forced induction / naturally aspirated</p>
           <br></br>
           { boolTurbo ? (
-            <button style={{ color: "red", outline: "2px solid red", }} className="btn" onClick={() => filterInduction('Turbocharged')}>Turbocharged</button>
+            <button style={{ color: "red", outline: "2px solid red", display: "inline", margin: "0 auto", width: "45%", marginRight: "15px", marginBottom: "15px", }} className="btn" onClick={() => filterInduction('Turbocharged')}>Turbocharged</button>
           ) : (
-            <button className="btn" onClick={() => filterInduction('Turbocharged')}>Turbocharged</button>
+            <button style={{ display: "inline", margin: "0 auto", width: "45%", marginRight: "14px", marginBottom: "15px", }} className="btn" onClick={() => filterInduction('Turbocharged')}>Turbocharged</button>
           )}
           { boolSc ? (
-            <button style={{ color: "red", outline: "2px solid red", }} className="btn" onClick={() => filterInduction('Supercharged')}>Supercharged</button>
+            <button style={{ color: "red", outline: "2px solid red", display: "inline", margin: "0 auto", width: "45%", marginRight: "15px", marginBottom: "15px", }} className="btn" onClick={() => filterInduction('Supercharged')}>Supercharged</button>
           ) : (
-            <button className="btn" onClick={() => filterInduction('Supercharged')}>Supercharged</button>
+            <button style={{ display: "inline", margin: "0 auto", width: "45%", marginRight: "14px", marginBottom: "15px", }} className="btn" onClick={() => filterInduction('Supercharged')}>Supercharged</button>
           )}
           { boolNa ? (
-            <button style={{ color: "red", outline: "2px solid red", }} className="btn" onClick={() => filterInduction('Naturally aspirated')}>Naturally aspirated</button>
+            <button style={{ color: "red", outline: "2px solid red", display: "inline", margin: "0 auto", width: "94%", marginRight: "15px", marginBottom: "15px", }} className="btn" onClick={() => filterInduction('Naturally aspirated')}>Naturally aspirated</button>
           ) : (
-            <button className="btn" onClick={() => filterInduction('Naturally aspirated')}>Naturally aspirated</button>
+            <button style={{ display: "inline", margin: "0 auto", width: "94%", marginRight: "14px", marginBottom: "15px", }} className="btn" onClick={() => filterInduction('Naturally aspirated')}>Naturally aspirated</button>
           )}
           <br></br>
           <p>Engine configuration</p>
           <br></br>
           { boolI5 ? (
-            <button style={{ color: "red", outline: "2px solid red", }} className="btn" onClick={() => filterEngine('I5')}>I5</button>
+            <button style={{ color: "red", outline: "2px solid red", display: "inline", margin: "0 auto", width: "28%", marginRight: "15px", marginBottom: "15px", }} className="btn" onClick={() => filterEngine('I5')}>I5</button>
           ) : (
-            <button className="btn" onClick={() => filterEngine('I5')}>I5</button>
+            <button style={{ display: "inline", margin: "0 auto", width: "28%", marginRight: "15px", marginBottom: "15px", }} className="btn" onClick={() => filterEngine('I5')}>I5</button>
           )}
           { boolI6 ? (
-            <button style={{ color: "red", outline: "2px solid red", }} className="btn" onClick={() => filterEngine('I6')}>I6</button>
+            <button style={{ color: "red", outline: "2px solid red", display: "inline", margin: "0 auto", width: "28%", marginRight: "0px", marginBottom: "15px", }} className="btn" onClick={() => filterEngine('I6')}>I6</button>
           ) : (
-            <button className="btn" onClick={() => filterEngine('I6')}>I6</button>
+            <button style={{ display: "inline", margin: "0 auto", width: "28%", marginRight: "0px", marginBottom: "15px", }} className="btn" onClick={() => filterEngine('I6')}>I6</button>
           )}
           { boolV6 ? (
-            <button style={{ color: "red", outline: "2px solid red", }} className="btn" onClick={() => filterEngine('V6')}>V6</button>
+            <button style={{ color: "red", outline: "2px solid red", display: "inline", margin: "0 auto", width: "28%", marginLeft: "15px", marginBottom: "15px", }} className="btn" onClick={() => filterEngine('V6')}>V6</button>
           ) : (
-            <button className="btn" onClick={() => filterEngine('V6')}>V6</button>
+            <button style={{ display: "inline", margin: "0 auto", width: "28%", marginLeft: "15px", marginBottom: "15px", }} className="btn" onClick={() => filterEngine('V6')}>V6</button>
           )}
           { boolV8 ? (
-            <button style={{ color: "red", outline: "2px solid red", }} className="btn" onClick={() => filterEngine('V8')}>V8</button>
+            <button style={{ color: "red", outline: "2px solid red", display: "inline", margin: "0 auto", width: "28%", marginRight: "15px", marginBottom: "15px", }} className="btn" onClick={() => filterEngine('V8')}>V8</button>
           ) : (
-            <button className="btn" onClick={() => filterEngine('V8')}>V8</button>
+            <button style={{ display: "inline", margin: "0 auto", width: "28%", marginRight: "15px", marginBottom: "15px", }} className="btn" onClick={() => filterEngine('V8')}>V8</button>
           )}
           { boolV10 ? (
-            <button style={{ color: "red", outline: "2px solid red", }} className="btn" onClick={() => filterEngine('V10')}>V10</button>
+            <button style={{ color: "red", outline: "2px solid red", display: "inline", margin: "0 auto", width: "28%", marginRight: "15px", marginBottom: "15px", }} className="btn" onClick={() => filterEngine('V10')}>V10</button>
           ) : (
-            <button className="btn" onClick={() => filterEngine('V10')}>V10</button>
+            <button style={{ display: "inline", margin: "0 auto", width: "28%", marginRight: "15px", marginBottom: "15px", }} className="btn" onClick={() => filterEngine('V10')}>V10</button>
           )}
         </div>
         <div className="col">
@@ -350,9 +364,9 @@ const Filter = () => {
                   <div className="card-footer">
                     <h3 className="trap-speed">Trap speed: {speed}mph</h3>
                     {isFavorited ? (
-                      <button style={{ "text-decoration": "underline", }} className="add-fav" onClick={() => removeFavorite(id)}>Remove from favorites</button>
+                      <button style={{ "textDecoration": "underline", }} className="add-fav" onClick={() => removeFavorite(id)}>Remove from favorites</button>
                     ) : (
-                      <button style={{ "text-decoration": "underline", }} className="add-fav" onClick={() => addFavorite(id)}>Add to favorites</button>
+                      <button style={{ "textDecoration": "underline", }} className="add-fav" onClick={() => addFavorite(id)}>Add to favorites</button>
                     )}
                   </div>
                 </div>
