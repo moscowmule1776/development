@@ -1,0 +1,134 @@
+body {
+  background-color: #2C3E50;
+  color: #FFFFFF;
+}
+
+.title {
+  text-align: center;
+  color: red;
+}
+
+.row:first-child {
+  margin-bottom: 50px;
+}
+
+.row:nth-child(2) {
+  display: flex;
+}
+
+.row:nth-child(2) .col {
+  padding: 0 15px;
+  text-align: left;
+}
+
+.row:nth-child(2) .col:first-child {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding-left: 50px;
+  padding-right: 5px;
+}
+
+.row:nth-child(2) .col:last-child {
+  flex: 3;
+}
+
+.btn {
+  margin-bottom: 20px;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: transparent;
+  border: none;
+  outline: 2px solid white;
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.5s;
+  font-size: 15px;
+  transition: all .2s ease-in-out;
+  color: #FFFFFF;
+}
+
+.btn:hover {
+  font-weight: bold;
+  transform: scale(1.02);
+  color: red;
+  outline: 2px solid red;
+}
+
+.add-fav {
+  background-color: transparent;
+  border: none;
+  width: max-content;
+  cursor: pointer;
+  font-size: 15px;
+  transition: all .2s ease-in-out;
+  padding-top: 5px;
+  color: red;
+}
+
+.add-fav:hover {
+  font-weight: bold;
+  transform: scale(1.05);
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 300px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 0px 15px 30px 15px;
+  text-align: center;
+  transition: all .2s ease-in-out;
+  background-color: #34495E;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card-body img {
+  border-radius: 10px;
+  width:  250px;
+  height: 150px;
+  object-fit: cover;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
+}
+
+.title-card {
+  text-align: center;
+}
+
+.engine-induction {
+  text-align: center;
+  margin: 10px 0;
+}
+
+.engine-type {
+  text-align: center;
+  margin: 10px 0;
+}
+
+.quarter-mile-time {
+  text-align: center;
+  margin: 10px 0;
+}
+
+.trap-speed {
+  text-align: center;
+  margin: 10px 0;
+}
+
+h1, h2, h3 {
+  font-weight: normal;
+}
+
+p {
+  font-weight: bold;
+  font-style: italic;
+}
