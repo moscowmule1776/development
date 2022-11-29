@@ -17,3 +17,6 @@ I use a Data.jsx component from which I read all the cars/details about each car
 
 ### How the User Triggers State Changes
 The user triggers state changes by pressing the different buttons for sorting/filtering. I am using the React useState hook for both setting data after filtering/sorting, and adding to/removing from favorites. This results in React rerendering the UI when the data is changed due to it being filtered/sorted in any way, so the user will see the page automatically update in front of them!
+
+### Notes
+For the favorites/aggregator section, you have to click favorites to filter them for it to update the aggregated value below the button.
